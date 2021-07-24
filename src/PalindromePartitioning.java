@@ -75,11 +75,11 @@ public class PalindromePartitioning {
         if (s == null || s.length() == 0) {
             return res;
         }
-        helper(res, new Stack<>(), s);
+        DFS(res, new Stack<>(), s);
         return res;
     }
 
-    private void helper(List<List<String>> res, Stack<String> stack, String s) {
+    private void DFS(List<List<String>> res, Stack<String> stack, String s) {
         if (s.length() == 0) {
             res.add(new ArrayList<>(stack));                            //  How convenient is that?
             return;
@@ -88,7 +88,7 @@ public class PalindromePartitioning {
         for (int i = 0; i < s.length(); i++) {
             if (isPalindrome(s.substring(0, i + 1))) {
                 stack.push(s.substring(0, i + 1));
-                helper(res, stack, s.substring(i + 1));
+                DFS(res, stack, s.substring(i + 1));
                 stack.pop();
             }
         }

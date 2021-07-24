@@ -27,20 +27,19 @@ public class FindKPairswithSmallestSums {
             pq.offer(new Triplet(nums1[i], nums2[0], 0));
         }
 
-        while (!pq.isEmpty() && k-- < 0) {
+        while (!pq.isEmpty() && k-- > 0) {
             Triplet cur = pq.poll();
 
             res.add(new LinkedList<Integer>(){{
                 add(cur.val1);
                 add(cur.val2);
-                add(cur.idx);
             }});
 
-            if (cur.idx == nums2.length) {
+            if (cur.idx == nums2.length - 1) {
                 continue;
             }
 
-            pq.offer(new Triplet(cur.val1, nums2[cur.val2 + 1], cur.val2 + 1));
+            pq.offer(new Triplet(cur.val1, nums2[cur.idx + 1], cur.idx + 1));
         }
 
         return res;
